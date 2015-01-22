@@ -1,4 +1,4 @@
-Vane
+#Vane
 
 Vane is a GPL fork of the now non-free popular wordpress vulnerability scanner WPScan.
 
@@ -8,7 +8,7 @@ Backstory: https://www.delvelabs.ca/robbed-gunpoint/
 Please note that the WPScan team does not bear any responsibility for anything in this
 program.
 
-==LICENSE==
+##LICENSE
 
 Vane - A WordPress vulnerability scanner
 
@@ -29,30 +29,30 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-==INSTALL==
+##INSTALL
 
-  Prerequisites:
+###Prerequisites
 
    * Windows not supported
    * Ruby => 1.9
    * RubyGems
    * Git
 
-  -> Installing on Debian/Ubuntu:
+##Installing on Debian/Ubuntu
 
     sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev ruby-dev
     git clone https://github.com/delvelabs/vane.git
     cd vane
     sudo gem install bundler && bundle install --without test development
 
-  -> Installing on Fedora:
+##Installing on Fedora
 
     sudo yum install libcurl-devel
     git clone https://github.com/delvelabs/vane.git
     cd vane
     sudo gem install bundler && bundle install --without test development
 
-  -> Installing on Archlinux:
+##Installing on Archlinux
 
     pacman -Sy ruby
     pacman -Sy libyaml
@@ -64,45 +64,45 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     gem install typhoeus
     gem install nokogiri
 
-  -> Installing on Mac OS X:
+##Installing on Mac OS X
 
     git clone https://github.com/delvelabs/vane.git
     cd vane
     sudo gem install bundler && bundle install --without test development
 
-==KNOWN ISSUES==
+##KNOWN ISSUES
 
-  - Typhoeus segmentation fault:
-      Update cURL to version => 7.21 (may have to install from source)
-      See http://code.google.com/p/vane/issues/detail?id=81
+###Typhoeus segmentation fault
+Update cURL to version => 7.21 (may have to install from source)
+See http://code.google.com/p/vane/issues/detail?id=81
 
-  - Proxy not working:
-      Update cURL to version => 7.21.7 (may have to install from source).
+###Proxy not working
+Update cURL to version => 7.21.7 (may have to install from source).
 
-      Installation from sources :
-        - Grab the sources from http://curl.haxx.se/download.html
-        - Decompress the archive
-        - Open the folder with the extracted files
-        - Run ./configure
-        - Run make
-        - Run sudo make install
-        - Run sudo ldconfig
+Installation from sources :
+  - Grab the sources from http://curl.haxx.se/download.html
+  - Decompress the archive
+  - Open the folder with the extracted files
+  - Run `./configure`
+  - Run `make`
+  - Run `sudo make install`
+  - Run `sudo ldconfig`
 
-  - cannot load such file -- readline:
-      Run sudo aptitude install libreadline5-dev libncurses5-dev
+###cannot load such file -- readline
+Run `sudo aptitude install libreadline5-dev libncurses5-dev`
 
-      Then, open the directory of the readline gem (you have to locate it)
+Then, open the directory of the readline gem (you have to locate it)
 
-      cd ~/.rvm/src/ruby-1.9.2-p180/ext/readline
-      ruby extconf.rb
-      make
-      make install
+    cd ~/.rvm/src/ruby-1.9.2-p180/ext/readline
+    ruby extconf.rb
+    make
+    make install
 
-      See http://vvv.tobiassjosten.net/ruby-on-rails/fixing-readline-for-the-ruby-on-rails-console/ for more details
+See http://vvv.tobiassjosten.net/ruby-on-rails/fixing-readline-for-the-ruby-on-rails-console/ for more details
 
 
 
-==WPSCAN ARGUMENTS==
+##VANE ARGUMENTS
 
 --update   Update to the latest revision
 
@@ -152,38 +152,40 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 --verbose  | -v Verbose output.
 
-==WPSCAN EXAMPLES==
+##VANE EXAMPLES
 
 Do 'non-intrusive' checks...
 
-  ruby vane.rb --url www.example.com
+    ruby vane.rb --url www.example.com
 
 Do wordlist password brute force on enumerated users using 50 threads...
 
-  ruby vane.rb --url www.example.com --wordlist darkc0de.lst --threads 50
+    ruby vane.rb --url www.example.com --wordlist darkc0de.lst --threads 50
 
 Do wordlist password brute force on the 'admin' username only...
 
-  ruby vane.rb --url www.example.com --wordlist darkc0de.lst --username admin
+    ruby vane.rb --url www.example.com --wordlist darkc0de.lst --username admin
 
 Enumerate installed plugins...
 
-  ruby vane.rb --url www.example.com --enumerate p
+    ruby vane.rb --url www.example.com --enumerate p
 
-==VANETOOLS ARGUMENTS==
+##VANETOOLS ARGUMENTS
 
---help    | -h   This help screen.
---Verbose | -v   Verbose output.
---update  | -u   Update to the latest revision.
---generate_plugin_list [number of pages]  Generate a new data/plugins.txt file. (supply number of *pages* to parse, default : 150)
---gpl  Alias for --generate_plugin_list
---check-local-vulnerable-files | --clvf <local directory>  Perform a recursive scan in the <local directory> to find vulnerable files or shells
+    --help    | -h   This help screen.
+    --Verbose | -v   Verbose output.
+    --update  | -u   Update to the latest revision.
+    --generate_plugin_list [number of pages]  Generate a new data/plugins.txt file. (supply number of *pages* to parse, default : 150)
+    --gpl  Alias for --generate_plugin_list
+    --check-local-vulnerable-files | --clvf <local directory>  Perform a recursive scan in the <local directory> to find vulnerable files or shells
 
-==VANETOOLS EXAMPLES==
+##VANETOOLS EXAMPLES
 
-- Generate a new 'most popular' plugin list, up to 150 pages ...
-ruby vanetools.rb --generate_plugin_list 150
+Generate a new 'most popular' plugin list, up to 150 pages ...
 
-- Locally scan a wordpress installation for vulnerable files or shells :
-ruby vanetools.rb --check-local-vulnerable-files /var/www/wordpress/
+    ruby vanetools.rb --generate_plugin_list 150
+
+Locally scan a wordpress installation for vulnerable files or shells :
+
+    ruby vanetools.rb --check-local-vulnerable-files /var/www/wordpress/
 
