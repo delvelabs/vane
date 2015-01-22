@@ -1,0 +1,3 @@
+plugins/feature-slideshow/timthumb.php
+plugins/fotoslide/timthumb.php
+plugins/feature-slideshow/timthumb.php
