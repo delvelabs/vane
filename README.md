@@ -13,6 +13,7 @@ program.
 Vane - A WordPress vulnerability scanner
 
 Copyright (C) 2012-2015 WPScan Team
+
 Copyright (C) 2015 Delve Labs inc.
 
 This program is free software: you can redistribute it and/or modify
@@ -102,7 +103,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 
-==WPSCAN ARGUMENTS==
+==VANE ARGUMENTS==
 
 --update   Update to the latest revision
 
@@ -152,7 +153,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 --verbose  | -v Verbose output.
 
-==WPSCAN EXAMPLES==
+==VANE EXAMPLES==
 
 Do 'non-intrusive' checks...
 
