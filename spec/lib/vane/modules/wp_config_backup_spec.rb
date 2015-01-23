@@ -20,8 +20,8 @@
 shared_examples_for 'WpConfigBackup' do
 
   before :all do
-    @module = WpScanModuleSpec.new('http://example.localhost')
-    @fixtures_dir = SPEC_FIXTURES_WPSCAN_MODULES_DIR + '/wp_config_backup'
+    @module = VaneModuleSpec.new('http://example.localhost')
+    @fixtures_dir = SPEC_FIXTURES_VANE_MODULES_DIR + '/wp_config_backup'
     @config_backup_files = WpConfigBackup.config_backup_files
 
     @module.extend(WpConfigBackup)

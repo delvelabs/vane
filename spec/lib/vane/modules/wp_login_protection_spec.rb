@@ -20,11 +20,11 @@
 shared_examples_for 'WpLoginProtection' do
 
   before :each do
-    @module = WpScanModuleSpec.new('http://example.localhost')
+    @module = VaneModuleSpec.new('http://example.localhost')
     @module.extend(WpLoginProtection)
     @module.stub(:wp_plugins_dir).and_return('wp-content/plugins')
 
-    @fixtures_dir = SPEC_FIXTURES_WPSCAN_MODULES_DIR + '/wp_login_protection'
+    @fixtures_dir = SPEC_FIXTURES_VANE_MODULES_DIR + '/wp_login_protection'
   end
 
   describe '#login_url' do

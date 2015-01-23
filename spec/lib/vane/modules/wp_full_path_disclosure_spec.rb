@@ -20,10 +20,10 @@
 shared_examples_for 'WpFullPathDisclosure' do
 
   before :all do
-    @module = WpScanModuleSpec.new('http://example.localhost')
+    @module = VaneModuleSpec.new('http://example.localhost')
     @module.extend(WpFullPathDisclosure)
 
-    @fixtures_dir = SPEC_FIXTURES_WPSCAN_MODULES_DIR + '/wp_full_path_disclosure'
+    @fixtures_dir = SPEC_FIXTURES_VANE_MODULES_DIR + '/wp_full_path_disclosure'
   end
 
   describe '#full_path_disclosure_url' do

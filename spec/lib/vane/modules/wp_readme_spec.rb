@@ -20,8 +20,8 @@
 shared_examples_for 'WpReadme' do
 
   before :all do
-    @module = WpScanModuleSpec.new('http://example.localhost')
-    @fixtures_dir = SPEC_FIXTURES_WPSCAN_MODULES_DIR + '/wp_readme'
+    @module = VaneModuleSpec.new('http://example.localhost')
+    @fixtures_dir = SPEC_FIXTURES_VANE_MODULES_DIR + '/wp_readme'
 
     @module.extend(WpReadme)
   end

@@ -19,9 +19,9 @@
 
 shared_examples_for 'BruteForce' do
   before :each do
-    @module             = WpScanModuleSpec.new('http://example.localhost')
+    @module             = VaneModuleSpec.new('http://example.localhost')
     @target_url         = @module.uri.to_s
-    @fixtures_dir       = SPEC_FIXTURES_WPSCAN_MODULES_DIR + '/bruteforce'
+    @fixtures_dir       = SPEC_FIXTURES_VANE_MODULES_DIR + '/bruteforce'
     @wordlist           = @fixtures_dir + '/wordlist.txt'
     @username           = 'admin'
 

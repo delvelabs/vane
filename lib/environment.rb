@@ -21,7 +21,7 @@ require 'rubygems'
 
 version = RUBY_VERSION.dup
 if Gem::Version.create(version) < Gem::Version.create(1.9)
-  puts "Ruby >= 1.9 required to run wpscan (You have #{version})"
+  puts "Ruby >= 1.9 required to run vane (You have #{version})"
   exit(1)
 end
 
@@ -57,12 +57,12 @@ rescue LoadError => e
       puts 'Nokogiri needs some packets, please run \'sudo apt-get install libxml2 libxml2-dev libxslt1-dev\' to install them. Then run the command below'
       puts
     end
-    puts "[TIP] Try to run 'gem install #{missing_gem}' or 'gem install --user-install #{missing_gem}'. If you still get an error, Please see README file or https://github.com/wpscanteam/wpscan"
+    puts "[TIP] Try to run 'gem install #{missing_gem}' or 'gem install --user-install #{missing_gem}'. If you still get an error, Please see README file or https://github.com/delvelabs/vane"
   end
   exit(1)
 end
 
 if Typhoeus::VERSION == '0.4.0'
-  puts 'Typhoeus 0.4.0 detected, please update the gem otherwise wpscan will not work correctly'
+  puts 'Typhoeus 0.4.0 detected, please update the gem otherwise vane will not work correctly'
   exit(1)
 end

@@ -17,10 +17,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-require File.expand_path(File.dirname(__FILE__) + '/wpscan_helper')
+require File.expand_path(File.dirname(__FILE__) + '/vane_helper')
 
 describe WpTarget do
-  let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_TARGET_DIR }
+  let(:fixtures_dir) { SPEC_FIXTURES_VANE_WP_TARGET_DIR }
   let(:target_url) { 'http://example.localhost/' }
 
   before :each do
@@ -152,7 +152,7 @@ describe WpTarget do
   end
 
   describe '#wp_content_dir' do
-    let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_TARGET_DIR + '/wp_content_dir' }
+    let(:fixtures_dir) { SPEC_FIXTURES_VANE_WP_TARGET_DIR + '/wp_content_dir' }
 
     after :each do
       @wp_target = WpTarget.new(@target_url) if @target_url
@@ -304,7 +304,7 @@ describe WpTarget do
   end
 
   describe '#has_debug_log?' do
-    let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_TARGET_DIR + '/debug_log' }
+    let(:fixtures_dir) { SPEC_FIXTURES_VANE_WP_TARGET_DIR + '/debug_log' }
 
     after :each do
       @wp_target.stub(wp_content_dir: 'wp-content')

@@ -18,7 +18,7 @@
 #++
 
 describe 'WebSite' do
-  let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WEB_SITE_DIR }
+  let(:fixtures_dir) { SPEC_FIXTURES_VANE_WEB_SITE_DIR }
   subject(:web_site) { WebSite.new('http://example.localhost/') }
 
   before :all do

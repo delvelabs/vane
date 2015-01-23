@@ -20,16 +20,14 @@
 class StatsPlugin < Plugin
 
   def initialize
-    super(author: 'WPScanTeam - Christian Mehlmauer')
-
     register_options(
-        ['--stats', '--s', 'Show WpScan Database statistics']
+        ['--stats', '--s', 'Show Vane Database statistics']
     )
   end
 
   def run(options = {})
     if options[:stats]
-      puts "Wpscan Databse Statistics:"
+      puts "Vane Databse Statistics:"
       puts "--------------------------"
       puts "[#] Total vulnerable plugins: #{vuln_plugin_count}"
       puts "[#] Total vulnerable themes: #{vuln_theme_count}"

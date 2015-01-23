@@ -18,12 +18,12 @@
 #++
 
 LIB_DIR              = File.expand_path(File.dirname(__FILE__) + '/..')
-ROOT_DIR             = File.expand_path(LIB_DIR + '/..') # expand_path is used to get "wpscan/" instead of "wpscan/lib/../"
+ROOT_DIR             = File.expand_path(LIB_DIR + '/..') # expand_path is used to get "vane/" instead of "vane/lib/../"
 DATA_DIR             = ROOT_DIR + '/data'
 CONF_DIR             = ROOT_DIR + '/conf'
 CACHE_DIR            = ROOT_DIR + '/cache'
-WPSCAN_LIB_DIR       = LIB_DIR + '/wpscan'
-WPSTOOLS_LIB_DIR     = LIB_DIR + '/wpstools'
+VANE_LIB_DIR         = LIB_DIR + '/vane'
+VANETOOLS_LIB_DIR    = LIB_DIR + '/vanetools'
 UPDATER_LIB_DIR      = LIB_DIR + '/updater'
 COMMON_LIB_DIR       = LIB_DIR + '/common'
 MODELS_LIB_DIR       = COMMON_LIB_DIR + '/models'
@@ -33,8 +33,8 @@ LOG_FILE             = ROOT_DIR + '/log.txt'
 
 # Plugins directories
 COMMON_PLUGINS_DIR   = COMMON_LIB_DIR + '/plugins'
-WPSCAN_PLUGINS_DIR   = WPSCAN_LIB_DIR + '/plugins' # Not used ATM
-WPSTOOLS_PLUGINS_DIR = WPSTOOLS_LIB_DIR + '/plugins'
+VANE_PLUGINS_DIR     = VANE_LIB_DIR + '/plugins' # Not used ATM
+VANETOOLS_PLUGINS_DIR = VANETOOLS_LIB_DIR + '/plugins'
 
 # Data files
 PLUGINS_FILE        = DATA_DIR + '/plugins.txt'
@@ -50,10 +50,10 @@ VULNS_XSD           = DATA_DIR + '/vuln.xsd'
 WP_VERSIONS_XSD     = DATA_DIR + '/wp_versions.xsd'
 LOCAL_FILES_XSD     = DATA_DIR + '/local_vulnerable_files.xsd'
 
-WPSCAN_VERSION       = '2.1'
+VANE_VERSION       = '2.1'
 
 $LOAD_PATH.unshift(LIB_DIR)
-$LOAD_PATH.unshift(WPSCAN_LIB_DIR)
+$LOAD_PATH.unshift(VANE_LIB_DIR)
 $LOAD_PATH.unshift(MODELS_LIB_DIR)
 
 require 'environment'

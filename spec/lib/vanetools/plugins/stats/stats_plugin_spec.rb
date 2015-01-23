@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-require File.expand_path(File.dirname(__FILE__) + '/../../wpstools_helper')
+require File.expand_path(File.dirname(__FILE__) + '/../../vanetools_helper')
 
 describe 'StatsPlugin' do
   subject(:stats)     { StatsPlugin.new }

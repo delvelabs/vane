@@ -19,20 +19,20 @@
 
 require 'spec_helper'
 
-require WPSCAN_LIB_DIR + '/wpscan_helper'
+require VANE_LIB_DIR + '/vane_helper'
 
-SPEC_FIXTURES_WPSCAN_DIR                = SPEC_FIXTURES_DIR + '/wpscan'
-SPEC_FIXTURES_WPSCAN_MODULES_DIR        = SPEC_FIXTURES_WPSCAN_DIR + '/modules'
-SPEC_FIXTURES_WPSCAN_WEB_SITE_DIR       = SPEC_FIXTURES_WPSCAN_DIR + '/web_site'
-SPEC_FIXTURES_WPSCAN_WP_TARGET_DIR      = SPEC_FIXTURES_WPSCAN_DIR + '/wp_target'
-SPEC_FIXTURES_WPSCAN_WPSCAN_OPTIONS_DIR = SPEC_FIXTURES_WPSCAN_DIR + '/wpscan_options'
-SPEC_FIXTURES_WPSCAN_WP_THEME_DIR       = SPEC_FIXTURES_WPSCAN_DIR + '/wp_theme'
-SPEC_FIXTURES_WPSCAN_WP_PLUGIN_DIR      = SPEC_FIXTURES_WPSCAN_DIR + '/wp_plugin'
-SPEC_FIXTURES_WPSCAN_WP_VERSION_DIR     = SPEC_FIXTURES_WPSCAN_DIR + '/wp_version'
+SPEC_FIXTURES_VANE_DIR                = SPEC_FIXTURES_DIR + '/vane'
+SPEC_FIXTURES_VANE_MODULES_DIR        = SPEC_FIXTURES_VANE_DIR + '/modules'
+SPEC_FIXTURES_VANE_WEB_SITE_DIR       = SPEC_FIXTURES_VANE_DIR + '/web_site'
+SPEC_FIXTURES_VANE_WP_TARGET_DIR      = SPEC_FIXTURES_VANE_DIR + '/wp_target'
+SPEC_FIXTURES_VANE_VANE_OPTIONS_DIR   = SPEC_FIXTURES_VANE_DIR + '/vane_options'
+SPEC_FIXTURES_VANE_WP_THEME_DIR       = SPEC_FIXTURES_VANE_DIR + '/wp_theme'
+SPEC_FIXTURES_VANE_WP_PLUGIN_DIR      = SPEC_FIXTURES_VANE_DIR + '/wp_plugin'
+SPEC_FIXTURES_VANE_WP_VERSION_DIR     = SPEC_FIXTURES_VANE_DIR + '/wp_version'
 
 # This class is a HACK to simulate the WpTarget behavior in order
 # to be able to test the modules independently
-class WpScanModuleSpec
+class VaneModuleSpec
   attr_reader   :uri
   attr_accessor :error_404_hash, :homepage_hash, :wp_content_dir, :verbose
 

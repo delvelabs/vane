@@ -21,7 +21,7 @@
 #++
 
 $: << '.'
-require File.dirname(__FILE__) + '/lib/wpscan/wpscan_helper'
+require File.dirname(__FILE__) + '/lib/vane/vane_helper'
 require File.dirname(__FILE__) + '/main'
 
 main()

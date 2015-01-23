@@ -19,10 +19,10 @@
 
 require 'spec_helper'
 
-describe 'wpscan main checks' do
+describe 'vane main checks' do
 
   it 'should check for errors on running the mainscript' do
-    a = %x[ruby #{ROOT_DIR}/wpscan.rb]
+    a = %x[ruby #{ROOT_DIR}/vane.rb]
     a.should =~ /\[ERROR\] No argument supplied/
   end
 

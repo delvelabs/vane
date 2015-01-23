@@ -20,13 +20,13 @@
 #++
 
 $: << '.'
-require File.dirname(__FILE__) + '/lib/wpstools/wpstools_helper'
+require File.dirname(__FILE__) + '/lib/vanetools/vanetools_helper'
 
 begin
 
   banner()
 
-  option_parser = CustomOptionParser.new('Usage: ./wpstools.rb [options]', 60)
+  option_parser = CustomOptionParser.new('Usage: ./vanetools.rb [options]', 60)
   option_parser.separator ''
   option_parser.add(['-v', '--verbose', 'Verbose output'])
 
