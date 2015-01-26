@@ -2,7 +2,7 @@
 
 shared_examples 'WpTarget::WpReadme' do
 
-  let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_TARGET_DIR + '/wp_readme' }
+  let(:fixtures_dir) { SPEC_FIXTURES_VANE_WP_TARGET_DIR + '/wp_readme' }
 
   describe '#readme_url' do
     it 'returns http://example.localhost/readme.html' do

@@ -1,11 +1,11 @@
 # encoding: UTF-8
 
-require File.expand_path(File.dirname(__FILE__) + '/wpscan_helper')
+require File.expand_path(File.dirname(__FILE__) + '/vane_helper')
 
 describe WpTarget do
   subject(:wp_target) { WpTarget.new(target_url, options) }
   let(:target_url)    { 'http://example.localhost/' }
-  let(:fixtures_dir)  { SPEC_FIXTURES_WPSCAN_WP_TARGET_DIR }
+  let(:fixtures_dir)  { SPEC_FIXTURES_VANE_WP_TARGET_DIR }
   let(:login_url)     { wp_target.uri.merge('wp-login.php').to_s }
   let(:options)       {
     {
@@ -131,7 +131,7 @@ describe WpTarget do
   end
 
   describe '#has_debug_log?' do
-    let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_TARGET_DIR + '/debug_log' }
+    let(:fixtures_dir) { SPEC_FIXTURES_VANE_WP_TARGET_DIR + '/debug_log' }
 
     after :each do
       allow(wp_target).to receive_messages(wp_content_dir: 'wp-content')

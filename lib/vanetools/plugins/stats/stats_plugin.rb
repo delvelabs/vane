@@ -6,7 +6,7 @@ class StatsPlugin < Plugin
     super(author: 'WPScanTeam - Christian Mehlmauer')
 
     register_options(
-        ['--stats', '-s', 'Show WpScan Database statistics.']
+        ['--stats', '-s', 'Show vane Database statistics.']
     )
   end
 
@@ -18,7 +18,7 @@ class StatsPlugin < Plugin
       date_plugins_full = File.mtime(PLUGINS_FULL_FILE)
       date_themes_full = File.mtime(THEMES_FULL_FILE)
 
-      puts "WPScan Database Statistics:"
+      puts "Vane Database Statistics:"
       puts "---------------------------"
       puts
       puts "[#] Total vulnerable versions: #{vuln_core_count}"

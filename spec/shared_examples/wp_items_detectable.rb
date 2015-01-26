@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-require WPSCAN_LIB_DIR + '/wp_target'
+require VANE_LIB_DIR + '/wp_target'
 
 shared_examples 'WpItems::Detectable' do
   let(:vulns_file)         { fixtures_dir + '/vulns.json' }

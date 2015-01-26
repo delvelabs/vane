@@ -58,7 +58,7 @@ class CheckerSpelling < Plugin
       /untill/i     => 'until',
       /alot/i       => 'a lot',
       /randomstorm/ => 'RandomStorm',
-      /wpscan/      => 'WPScan',
+      /vane/      => 'vane',
       /Wordpress/   => 'WordPress'
     }
   end

@@ -2,7 +2,7 @@
 
 shared_examples 'WpTarget::WpLoginProtection' do
 
-  let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_TARGET_DIR + '/wp_login_protection' }
+  let(:fixtures_dir) { SPEC_FIXTURES_VANE_WP_TARGET_DIR + '/wp_login_protection' }
 
   before { allow(wp_target).to receive(:wp_plugins_dir).and_return('wp-content/plugins') }
 

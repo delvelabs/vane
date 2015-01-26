@@ -1,12 +1,12 @@
 # encoding: UTF-8
 
 LIB_DIR              = File.expand_path(File.join(File.dirname(__FILE__), '..'))
-ROOT_DIR             = File.expand_path(File.join(LIB_DIR, '..')) # expand_path is used to get "wpscan/" instead of "wpscan/lib/../"
+ROOT_DIR             = File.expand_path(File.join(LIB_DIR, '..')) 
 DATA_DIR             = File.join(ROOT_DIR, 'data')
 CONF_DIR             = File.join(ROOT_DIR, 'conf')
 CACHE_DIR            = File.join(ROOT_DIR, 'cache')
-WPSCAN_LIB_DIR       = File.join(LIB_DIR, 'wpscan')
-WPSTOOLS_LIB_DIR     = File.join(LIB_DIR, 'wpstools')
+VANE_LIB_DIR         = File.join(LIB_DIR, 'vane')
+VANETOOLS_LIB_DIR    = File.join(LIB_DIR, 'vanetools')
 UPDATER_LIB_DIR      = File.join(LIB_DIR, 'updater')
 COMMON_LIB_DIR       = File.join(LIB_DIR, 'common')
 MODELS_LIB_DIR       = File.join(COMMON_LIB_DIR, 'models')
@@ -16,8 +16,8 @@ LOG_FILE             = File.join(ROOT_DIR, 'log.txt')
 
 # Plugins directories
 COMMON_PLUGINS_DIR   = File.join(COMMON_LIB_DIR, 'plugins')
-WPSCAN_PLUGINS_DIR   = File.join(WPSCAN_LIB_DIR, 'plugins') # Not used ATM
-WPSTOOLS_PLUGINS_DIR = File.join(WPSTOOLS_LIB_DIR, 'plugins')
+VANE_PLUGINS_DIR      = File.join(VANE_LIB_DIR, 'plugins') # Not used ATM
+VANETOOLS_PLUGINS_DIR = File.join(VANE_LIB_DIR, 'plugins')
 
 # Data files
 PLUGINS_FILE        = File.join(DATA_DIR, 'plugins.txt')
@@ -34,10 +34,10 @@ WP_VERSIONS_XSD     = File.join(DATA_DIR, 'wp_versions.xsd')
 LOCAL_FILES_XSD     = File.join(DATA_DIR, 'local_vulnerable_files.xsd')
 USER_AGENTS_FILE    = File.join(DATA_DIR, 'user-agents.txt')
 
-WPSCAN_VERSION       = '2.6'
+VANE_VERSION       = '1.0'
 
 $LOAD_PATH.unshift(LIB_DIR)
-$LOAD_PATH.unshift(WPSCAN_LIB_DIR)
+$LOAD_PATH.unshift(VANE_LIB_DIR)
 $LOAD_PATH.unshift(MODELS_LIB_DIR)
 
 def kali_linux?
@@ -125,22 +125,8 @@ def notice(text)
   blue(text)
 end
 
-# our 1337 banner
 def banner
-  puts '_______________________________________________________________'
-  puts '        __          _______   _____                  '
-  puts '        \\ \\        / /  __ \\ / ____|                 '
-  puts '         \\ \\  /\\  / /| |__) | (___   ___  __ _ _ __  '
-  puts '          \\ \\/  \\/ / |  ___/ \\___ \\ / __|/ _` | \'_ \\ '
-  puts '           \\  /\\  /  | |     ____) | (__| (_| | | | |'
-  puts '            \\/  \\/   |_|    |_____/ \\___|\\__,_|_| |_|'
-  puts
-  puts '        WordPress Security Scanner by the WPScan Team '
-  puts "                       Version #{WPSCAN_VERSION}"
-  puts '          Sponsored by Sucuri - https://sucuri.net'
-  puts '   @_WPScan_, @ethicalhack3r, @erwan_lr, pvdl, @_FireFart_'
-  puts '_______________________________________________________________'
-  puts
+  puts 'Vane - a Free WordPress vulnerability scanner'
 end
 
 def xml(file)

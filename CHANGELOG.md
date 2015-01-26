@@ -1,6 +1,9 @@
 # Changelog
-## Master
-[Work in progress](https://github.com/wpscanteam/wpscan/compare/2.6...master)
+
+#### Vane FORK
+## Version 1.0
+Released: 2015-01-26
+
 
 ## Version 2.6
 Released: 2014-12-19

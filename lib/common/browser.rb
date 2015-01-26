@@ -77,7 +77,7 @@ class Browser
     @request_timeout = 2000
     # 1s
     @connect_timeout = 1000
-    @user_agent = "WPScan v#{WPSCAN_VERSION} (http://wpscan.org)"
+    @user_agent = "vane v#{VANE_VERSION} - A free WPScan alternative. (https://github.com/delvelabs/vane)"
   end
 
   #

@@ -2,23 +2,23 @@
 # encoding: UTF-8
 
 $: << '.'
-require File.dirname(__FILE__) + '/lib/wpscan/wpscan_helper'
+require File.dirname(__FILE__) + '/lib/vane/vane_helper'
 
 def main
   # delete old logfile, check if it is a symlink first.
   File.delete(LOG_FILE) if File.exist?(LOG_FILE) and !File.symlink?(LOG_FILE)
 
   begin
-    wpscan_options = WpscanOptions.load_from_arguments
+    vane_options = VaneOptions.load_from_arguments
 
-    $log = wpscan_options.log
+    $log = vane_options.log
 
     banner() # called after $log set
 
-    unless wpscan_options.has_options?
+    unless vane_options.has_options?
       # first parameter only url?
       if ARGV.length == 1
-        wpscan_options.url = ARGV[0]
+        vane_options.url = ARGV[0]
       else
         usage()
         raise('No argument supplied')
@@ -26,45 +26,46 @@ def main
     end
 
     # Define a global variable
-    $COLORSWITCH = wpscan_options.no_color
+    $COLORSWITCH = vane_options.no_color
 
-    if wpscan_options.help
+    if vane_options.help
       help()
       usage()
       exit(0)
     end
 
-    if wpscan_options.version
-      puts "Current version: #{WPSCAN_VERSION}"
+    if vane_options.version
+      puts "Current version: #{VANE_VERSION}"
       exit(0)
     end
 
     # Initialize the browser to allow the db update
     # to be done over a proxy if set
     Browser.instance(
-      wpscan_options.to_h.merge(max_threads: wpscan_options.threads)
+      vane_options.to_h.merge(max_threads: vane_options.threads)
     )
 
-    if wpscan_options.update || missing_db_file?
-      puts "#{notice('[i]')} Updating the Database ..."
-      DbUpdater.new(DATA_DIR).update(wpscan_options.verbose)
-      puts "#{notice('[i]')} Update completed."
-      # Exit program if only option --update is used
-      exit(0) unless wpscan_options.url
-    end
+    # Figure out something for that.
+    #if vane_options.update || missing_db_file?
+    #  puts "#{notice('[i]')} Updating the Database ..."
+    #  DbUpdater.new(DATA_DIR).update(vane_options.verbose)
+    #  puts "#{notice('[i]')} Update completed."
+    #  # Exit program if only option --update is used
+    #  exit(0) unless vane_options.url
+    #end
 
-    unless wpscan_options.url
+    unless vane_options.url
       raise 'The URL is mandatory, please supply it with --url or -u'
     end
 
-    wp_target = WpTarget.new(wpscan_options.url, wpscan_options.to_h)
+    wp_target = WpTarget.new(vane_options.url, vane_options.to_h)
 
     # Remote website up?
     unless wp_target.online?
       raise "The WordPress URL supplied '#{wp_target.uri}' seems to be down."
     end
 
-    if wpscan_options.proxy
+    if vane_options.proxy
       proxy_response = Browser.get(wp_target.url)
 
       unless WpTarget::valid_response_codes.include?(proxy_response.code)
@@ -74,16 +75,16 @@ def main
 
     # Remote website has a redirection?
     if (redirection = wp_target.redirection)
-      if wpscan_options.follow_redirection
+      if vane_options.follow_redirection
         puts "Following redirection #{redirection}"
       else
         puts "#{notice('[i]')} The remote host tried to redirect to: #{redirection}"
         print '[?] Do you want follow the redirection ? [Y]es [N]o [A]bort, default: [N]'
       end
-      if wpscan_options.follow_redirection || !wpscan_options.batch
-        if wpscan_options.follow_redirection || (input = Readline.readline) =~ /^y/i
-          wpscan_options.url = redirection
-          wp_target = WpTarget.new(redirection, wpscan_options.to_h)
+      if vane_options.follow_redirection || !vane_options.batch
+        if vane_options.follow_redirection || (input = Readline.readline) =~ /^y/i
+          vane_options.url = redirection
+          wp_target = WpTarget.new(redirection, vane_options.to_h)
         else
           if input =~ /^a/i
             puts 'Scan aborted'
@@ -93,18 +94,18 @@ def main
       end
     end
 
-    if wp_target.has_basic_auth? && wpscan_options.basic_auth.nil?
+    if wp_target.has_basic_auth? && vane_options.basic_auth.nil?
       raise 'Basic authentication is required, please provide it with --basic-auth <login:password>'
     end
 
     # test for valid credentials
-    unless wpscan_options.basic_auth.nil?
+    unless vane_options.basic_auth.nil?
       res = Browser.get_and_follow_location(wp_target.url)
       raise 'Invalid credentials supplied' if res && res.code == 401
     end
 
     # Remote website is wordpress?
-    unless wpscan_options.force
+    unless vane_options.force
       unless wp_target.wordpress?
         raise "#{critical('[!]')} The remote website is up, but does not seem to be running WordPress."
       end
@@ -118,7 +119,7 @@ def main
       puts "The plugins directory '#{wp_target.wp_plugins_dir}' does not exist."
       puts 'You can specify one per command line option (don\'t forget to include the wp-content directory if needed)'
       puts '[?] Continue? [Y]es [N]o, default: [N]'
-      if wpscan_options.batch || Readline.readline !~ /^y/i
+      if vane_options.batch || Readline.readline !~ /^y/i
         exit(0)
       end
     end
@@ -196,11 +197,11 @@ def main
 
     enum_options = {
       show_progression: true,
-      exclude_content: wpscan_options.exclude_content_based
+      exclude_content: vane_options.exclude_content_based
     }
 
     if wp_version = wp_target.version(WP_VERSIONS_FILE)
-      wp_version.output(wpscan_options.verbose)
+      wp_version.output(vane_options.verbose)
     else
       puts
       puts "#{notice('[i]')} WordPress version can not be detected"
@@ -210,7 +211,7 @@ def main
       puts
       # Theme version is handled in #to_s
       puts "#{info('[+]')} WordPress theme in use: #{wp_theme}"
-      wp_theme.output(wpscan_options.verbose)
+      wp_theme.output(vane_options.verbose)
 
       # Check for parent Themes
       parent_theme_count = 0
@@ -220,13 +221,13 @@ def main
         parent = wp_theme.get_parent_theme
         puts
         puts "#{info('[+]')} Detected parent theme: #{parent}"
-        parent.output(wpscan_options.verbose)
+        parent.output(vane_options.verbose)
         wp_theme = parent
       end
 
     end
 
-    if wpscan_options.enumerate_plugins == nil and wpscan_options.enumerate_only_vulnerable_plugins == nil
+    if vane_options.enumerate_plugins == nil and vane_options.enumerate_only_vulnerable_plugins == nil
       puts
       puts "#{info('[+]')} Enumerating plugins from passive detection ..."
 
@@ -234,57 +235,57 @@ def main
       if !wp_plugins.empty?
         puts " | #{wp_plugins.size} plugins found:"
 
-        wp_plugins.output(wpscan_options.verbose)
+        wp_plugins.output(vane_options.verbose)
       else
         puts "#{info('[+]')} No plugins found"
       end
     end
 
     # Enumerate the installed plugins
-    if wpscan_options.enumerate_plugins or wpscan_options.enumerate_only_vulnerable_plugins or wpscan_options.enumerate_all_plugins
+    if vane_options.enumerate_plugins or vane_options.enumerate_only_vulnerable_plugins or vane_options.enumerate_all_plugins
       puts
-      puts "#{info('[+]')} Enumerating installed plugins #{'(only vulnerable ones)' if wpscan_options.enumerate_only_vulnerable_plugins} ..."
+      puts "#{info('[+]')} Enumerating installed plugins #{'(only vulnerable ones)' if vane_options.enumerate_only_vulnerable_plugins} ..."
       puts
 
       wp_plugins = WpPlugins.aggressive_detection(wp_target,
         enum_options.merge(
-          file: wpscan_options.enumerate_all_plugins ? PLUGINS_FULL_FILE : PLUGINS_FILE,
-          only_vulnerable: wpscan_options.enumerate_only_vulnerable_plugins || false
+          file: vane_options.enumerate_all_plugins ? PLUGINS_FULL_FILE : PLUGINS_FILE,
+          only_vulnerable: vane_options.enumerate_only_vulnerable_plugins || false
         )
       )
       puts
       if !wp_plugins.empty?
         puts "#{info('[+]')} We found #{wp_plugins.size} plugins:"
 
-        wp_plugins.output(wpscan_options.verbose)
+        wp_plugins.output(vane_options.verbose)
       else
         puts "#{info('[+]')} No plugins found"
       end
     end
 
     # Enumerate installed themes
-    if wpscan_options.enumerate_themes or wpscan_options.enumerate_only_vulnerable_themes or wpscan_options.enumerate_all_themes
+    if vane_options.enumerate_themes or vane_options.enumerate_only_vulnerable_themes or vane_options.enumerate_all_themes
       puts
-      puts "#{info('[+]')} Enumerating installed themes #{'(only vulnerable ones)' if wpscan_options.enumerate_only_vulnerable_themes} ..."
+      puts "#{info('[+]')} Enumerating installed themes #{'(only vulnerable ones)' if vane_options.enumerate_only_vulnerable_themes} ..."
       puts
 
       wp_themes = WpThemes.aggressive_detection(wp_target,
         enum_options.merge(
-          file: wpscan_options.enumerate_all_themes ? THEMES_FULL_FILE : THEMES_FILE,
-          only_vulnerable: wpscan_options.enumerate_only_vulnerable_themes || false
+          file: vane_options.enumerate_all_themes ? THEMES_FULL_FILE : THEMES_FILE,
+          only_vulnerable: vane_options.enumerate_only_vulnerable_themes || false
         )
       )
       puts
       if !wp_themes.empty?
         puts "#{info('[+]')} We found #{wp_themes.size} themes:"
 
-        wp_themes.output(wpscan_options.verbose)
+        wp_themes.output(vane_options.verbose)
       else
         puts "#{info('[+]')} No themes found"
       end
     end
 
-    if wpscan_options.enumerate_timthumbs
+    if vane_options.enumerate_timthumbs
       puts
       puts "#{info('[+]')} Enumerating timthumb files ..."
       puts
@@ -299,14 +300,14 @@ def main
       if !wp_timthumbs.empty?
         puts "#{info('[+]')} We found #{wp_timthumbs.size} timthumb file/s:"
 
-        wp_timthumbs.output(wpscan_options.verbose)
+        wp_timthumbs.output(vane_options.verbose)
       else
         puts "#{info('[+]')} No timthumb files found"
       end
     end
 
     # If we haven't been supplied a username/usernames list, enumerate them...
-    if !wpscan_options.username && !wpscan_options.usernames && wpscan_options.wordlist || wpscan_options.enumerate_usernames
+    if !vane_options.username && !vane_options.usernames && vane_options.wordlist || vane_options.enumerate_usernames
       puts
       puts "#{info('[+]')} Enumerating usernames ..."
 
@@ -317,7 +318,7 @@ def main
 
       wp_users = WpUsers.aggressive_detection(wp_target,
         enum_options.merge(
-          range: wpscan_options.enumerate_usernames_range,
+          range: vane_options.enumerate_usernames_range,
           show_progression: false
         )
       )
@@ -325,7 +326,7 @@ def main
       if wp_users.empty?
         puts "#{info('[+]')} We did not enumerate any usernames"
 
-        if wpscan_options.wordlist
+        if vane_options.wordlist
           puts 'Try supplying your own username with the --username option'
           puts
           exit(1)
@@ -341,18 +342,18 @@ def main
     else
       wp_users = WpUsers.new
 
-      if wpscan_options.usernames
-        File.open(wpscan_options.usernames).each do |username|
+      if vane_options.usernames
+        File.open(vane_options.usernames).each do |username|
           wp_users << WpUser.new(wp_target.uri, login: username.chomp)
         end
       else
-        wp_users << WpUser.new(wp_target.uri, login: wpscan_options.username)
+        wp_users << WpUser.new(wp_target.uri, login: vane_options.username)
       end
     end
 
     # Start the brute forcer
     bruteforce = true
-    if wpscan_options.wordlist
+    if vane_options.wordlist
       if wp_target.has_login_protection?
 
         protection_plugin = wp_target.login_protection_plugin()
@@ -361,7 +362,7 @@ def main
         puts "#{warning('[!]')} The plugin #{protection_plugin.name} has been detected. It might record the IP and timestamp of every failed login and/or prevent brute forcing altogether. Not a good idea for brute forcing!"
         puts '[?] Do you want to start the brute force anyway ? [Y]es [N]o, default: [N]'
 
-        bruteforce = false if wpscan_options.batch || Readline.readline !~ /^y/i
+        bruteforce = false if vane_options.batch || Readline.readline !~ /^y/i
       end
 
       if bruteforce
@@ -369,9 +370,9 @@ def main
 
         begin
           wp_users.brute_force(
-            wpscan_options.wordlist,
+            vane_options.wordlist,
             show_progression: true,
-            verbose: wpscan_options.verbose
+            verbose: vane_options.verbose
           )
         ensure
           puts
@@ -398,14 +399,14 @@ def main
     puts
     puts critical(e.message)
 
-    if wpscan_options && wpscan_options.verbose
+    if vane_options && vane_options.verbose
       puts critical('Trace:')
       puts critical(e.backtrace.join("\n"))
     end
     exit(1)
   ensure
     # Ensure a clean abort of Hydra
-    # See https://github.com/wpscanteam/wpscan/issues/461#issuecomment-42735615
+    # See https://github.com/vaneteam/vane/issues/461#issuecomment-42735615
     Browser.instance.hydra.abort
     Browser.instance.hydra.run
   end

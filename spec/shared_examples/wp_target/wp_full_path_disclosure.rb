@@ -2,7 +2,7 @@
 
 shared_examples 'WpTarget::WpFullPathDisclosure' do
 
-  let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_TARGET_DIR + '/wp_full_path_disclosure' }
+  let(:fixtures_dir) { SPEC_FIXTURES_VANE_WP_TARGET_DIR + '/wp_full_path_disclosure' }
 
   describe '#full_path_disclosure_url' do
     it 'returns http://example.localhost/wp-includes/rss-functions.php' do

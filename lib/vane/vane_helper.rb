@@ -2,9 +2,9 @@
 
 require File.expand_path(File.dirname(__FILE__) + '/../common/common_helper')
 
-require_files_from_directory(WPSCAN_LIB_DIR, '**/*.rb')
+require_files_from_directory(VANE_LIB_DIR, '**/*.rb')
 
-# wpscan usage
+# vane usage
 def usage
   script_name = $0
   puts
@@ -64,7 +64,7 @@ def help
   puts
   puts '--update                            Update to the database to the latest version.'
   puts '--url       | -u <target url>       The WordPress URL/domain to scan.'
-  puts '--force     | -f                    Forces WPScan to not check if the remote site is running WordPress.'
+  puts '--force     | -f                    Forces vane to scan even if the site is not running WordPress.'
   puts '--enumerate | -e [option(s)]        Enumeration.'
   puts '  option :'
   puts '    u        usernames from id 1 to 10'
@@ -89,10 +89,10 @@ def help
   puts '--follow-redirection                If the target url has a redirection, it will be followed without asking if you wanted to do so or not'
   puts '--batch                             Never ask for user input, use the default behaviour.'
   puts '--no-color                          Do not use colors in the output.'
-  puts '--wp-content-dir <wp content dir>   WPScan try to find the content directory (ie wp-content) by scanning the index page, however you can specified it.'
+  puts '--wp-content-dir <wp content dir>   Vane try to find the content directory (ie wp-content) by scanning the index page, however you can specified it.'
   puts '                                    Subdirectories are allowed.'
   puts '--wp-plugins-dir <wp plugins dir>   Same thing than --wp-content-dir but for the plugins directory.'
-  puts '                                    If not supplied, WPScan will use wp-content-dir/plugins. Subdirectories are allowed'
+  puts '                                    If not supplied, vane will use wp-content-dir/plugins. Subdirectories are allowed'
   puts '--proxy <[protocol://]host:port>    Supply a proxy. HTTP, SOCKS4 SOCKS4A and SOCKS5 are supported.'
   puts '                                    If no protocol is given (format host:port), HTTP will be used.'
   puts '--proxy-auth <username:password>    Supply the proxy login credentials.'

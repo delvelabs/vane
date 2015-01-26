@@ -2,7 +2,7 @@
 
 shared_examples 'WpTarget::WpConfigBackup' do
 
-  let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_TARGET_DIR + '/wp_config_backup' }
+  let(:fixtures_dir) { SPEC_FIXTURES_VANE_WP_TARGET_DIR + '/wp_config_backup' }
   let(:config_backup_files) { WpTarget::WpConfigBackup.config_backup_files }
 
   describe '#config_backup' do

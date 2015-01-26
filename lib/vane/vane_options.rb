@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-class WpscanOptions
+class VaneOptions
 
   ACCESSOR_OPTIONS = [
     :batch,
@@ -174,26 +174,26 @@ class WpscanOptions
   end
 
   # Will load the options from ARGV
-  # return WpscanOptions
+  # return VaneOptions
   def self.load_from_arguments
-    wpscan_options = WpscanOptions.new
+    vane_options = VaneOptions.new
 
     if ARGV.length > 0
-      WpscanOptions.get_opt_long.each do |opt, arg|
-        wpscan_options.set_option_from_cli(opt, arg)
+      VaneOptions.get_opt_long.each do |opt, arg|
+        vane_options.set_option_from_cli(opt, arg)
       end
     end
 
-    wpscan_options
+    vane_options
   end
 
   # string cli_option : --url, -u, --proxy etc
   # string cli_value : the option value
   def set_option_from_cli(cli_option, cli_value)
 
-    if WpscanOptions.is_long_option?(cli_option)
+    if VaneOptions.is_long_option?(cli_option)
       self.send(
-          WpscanOptions.option_to_instance_variable_setter(cli_option),
+          VaneOptions.option_to_instance_variable_setter(cli_option),
           cli_value
       )
     elsif cli_option === '--enumerate' # Special cases
@@ -278,7 +278,7 @@ class WpscanOptions
   end
 
   def self.is_long_option?(option)
-    ACCESSOR_OPTIONS.include?(:"#{WpscanOptions.clean_option(option)}")
+    ACCESSOR_OPTIONS.include?(:"#{VaneOptions.clean_option(option)}")
   end
 
   # Will removed the '-' or '--' chars at the beginning of option
@@ -292,7 +292,7 @@ class WpscanOptions
   end
 
   def self.option_to_instance_variable_setter(option)
-    cleaned_option = WpscanOptions.clean_option(option)
+    cleaned_option = VaneOptions.clean_option(option)
     option_syms = ACCESSOR_OPTIONS.grep(%r{^#{cleaned_option}$})
 
     option_syms.length == 1 ? :"#{option_syms.at(0)}=" : nil

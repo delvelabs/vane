@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
 require 'spec_helper'
-require WPSCAN_LIB_DIR + '/wp_target'
+require VANE_LIB_DIR + '/wp_target'
 
 describe 'WpTimthumbs::Detectable' do
   subject(:wp_timthumbs)   { WpTimthumbs }

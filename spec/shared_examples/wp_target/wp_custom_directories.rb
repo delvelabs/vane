@@ -3,7 +3,7 @@
 shared_examples 'WpTarget::WpCustomDirectories' do
 
   describe '#wp_content_dir' do
-    let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_TARGET_DIR + '/wp_content_dir' }
+    let(:fixtures_dir) { SPEC_FIXTURES_VANE_WP_TARGET_DIR + '/wp_content_dir' }
 
     after :each do
       @wp_target = WpTarget.new(@target_url) if @target_url

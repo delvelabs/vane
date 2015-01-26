@@ -13,7 +13,7 @@ rvm:
 script: bundle exec rspec
 notifications:
   email:
-    - wpscanteam@gmail.com
+    - info@delvelabs.ca
 matrix:
   allow_failures:
     - rvm: 1.9.2
