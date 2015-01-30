@@ -1,6 +1,6 @@
 #Vane
 
-Vane is a GPL fork of the now non-free popular wordpress vulnerability scanner WPScan.
+Vane is a GPL fork of the now non-free popular WordPress vulnerability scanner WPScan.
 
 Backstory: https://www.delvelabs.ca/robbed-gunpoint/
 
@@ -185,7 +185,7 @@ Generate a new 'most popular' plugin list, up to 150 pages ...
 
     ruby vanetools.rb --generate_plugin_list 150
 
-Locally scan a wordpress installation for vulnerable files or shells :
+Locally scan a WordPress installation for vulnerable files or shells :
 
     ruby vanetools.rb --check-local-vulnerable-files /var/www/wordpress/
 
