@@ -17,7 +17,7 @@ LOG_FILE             = File.join(ROOT_DIR, 'log.txt')
 # Plugins directories
 COMMON_PLUGINS_DIR   = File.join(COMMON_LIB_DIR, 'plugins')
 VANE_PLUGINS_DIR      = File.join(VANE_LIB_DIR, 'plugins') # Not used ATM
-VANETOOLS_PLUGINS_DIR = File.join(VANE_LIB_DIR, 'plugins')
+VANETOOLS_PLUGINS_DIR = File.join(VANETOOLS_LIB_DIR, 'plugins')
 
 # Data files
 PLUGINS_FILE        = File.join(DATA_DIR, 'plugins.txt')

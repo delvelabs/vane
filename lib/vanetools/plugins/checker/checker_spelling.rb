@@ -89,3 +89,4 @@ class CheckerSpelling < Plugin
     ignore
   end
 end
+
