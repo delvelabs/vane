@@ -46,6 +46,8 @@ class WpTarget < WebSite
 
     if response.body =~ /["'][^"']*\/wp-content\/[^"']*["']/i
       wordpress = true
+    elsif response.body[%r{name="generator" content="wordpress #{'([^\r\n"\']+\.[^\r\n"\']+)'}"}i, 1]
+      wordpress = true
     else
 
       if has_xml_rpc?
