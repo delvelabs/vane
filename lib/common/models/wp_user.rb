@@ -24,7 +24,7 @@ class WpUser < WpItem
   # @return [ String ]
   def login_url
     unless @login_url
-      @login_url = @uri.merge('wp-login.php').to_s
+      @login_url = wp_uri.merge('wp-login.php').to_s
 
       # Let's check if the login url is redirected (to https url for example)
       if redirection = redirection(@login_url)

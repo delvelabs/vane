@@ -3,6 +3,23 @@
 class WpTarget < WebSite
   module WpCustomDirectories
 
+    # @return [ String ] The WordPress directory
+    def wp_uri
+      unless @wp_uri
+        index_body = Browser.get(@uri.to_s).body
+        uri = @uri.host + @uri.path
+        wp_path = index_body[/(?:href|src)\s*=\s*(?:"|').+#{Regexp.escape(uri)}([^"']+)\/(?:wp-includes)\/.*(?:"|')/i, 1]
+
+        if wp_path
+          @wp_uri = @uri.merge( wp_path + '/' )
+        else
+          @wp_uri = @uri
+        end
+      end
+
+      @wp_uri
+    end
+
     # @return [ String ] The wp-content directory
     def wp_content_dir
       unless @wp_content_dir

@@ -26,7 +26,7 @@ class WpTarget < WebSite
 
     # @return [ String ] The registration URL
     def registration_url
-      multisite? ? @uri.merge('wp-signup.php').to_s : @uri.merge('wp-login.php?action=register').to_s
+      multisite? ? wp_uri.merge('wp-signup.php').to_s : wp_uri.merge('wp-login.php?action=register').to_s
     end
 
     # @return [ Boolean ]
@@ -34,7 +34,7 @@ class WpTarget < WebSite
       unless @multisite
         # when multi site, there is no redirection or a redirect to the site itself
         # otherwise redirect to wp-login.php
-        resp = Browser.get(@uri.merge('wp-signup.php').to_s)
+        resp = Browser.get(wp_uri.merge('wp-signup.php').to_s)
 
         if resp.code == 302 and resp.headers_hash['location'] =~ /wp-login\.php\?action=register/
           @multisite = false

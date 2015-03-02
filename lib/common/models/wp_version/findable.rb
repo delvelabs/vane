@@ -186,7 +186,7 @@ class WpVersion < WpItem
     # @return [ String ] The version number
     def find_from_readme(target_uri)
       scan_url(
-        target_uri,
+        wp_url.to_s,
         %r{<br />\sversion #{version_pattern}}i,
         'readme.html'
       )

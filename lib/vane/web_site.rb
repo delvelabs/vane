@@ -38,7 +38,7 @@ class WebSite
   # See http://www.hixie.ch/specs/pingback/pingback-1.0#TOC2.3
   def xml_rpc_url
     unless @xmlrpc_url
-      @xmlrpc_url = @uri.merge('xmlrpc.php').to_s
+      @xmlrpc_url = wp_uri.merge('xmlrpc.php').to_s
     end
 
     @xmlrpc_url
