@@ -169,9 +169,14 @@ class WpVersion < WpItem
 
         response = Browser.get(wp_item.url)
         md5sum = Digest::MD5.hexdigest(response.body)
+        sha256sum = Digest::SHA256.hexdigest(response.body)
 
         node.search('hash').each do |hash|
-          if hash.attribute('md5').text == md5sum
+          md5node = hash.attribute('md5')
+          sha256node = hash.attribute('sha256')
+          if sha256node and sha256node.text == sha256sum
+            return hash.search('version').text
+          elsif md5node and md5node.text == md5sum
             return hash.search('version').text
           end
         end
