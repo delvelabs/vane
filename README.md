@@ -38,6 +38,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
    * RubyGems
    * Git
 
+##Run with docker
+
+Useful if you do not want to pollute your local environment with ruby gems.
+
+    docker build -t vane .
+    docker run --rm vane --help
+
 ##Installing on Debian/Ubuntu
 
     sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev ruby-dev
