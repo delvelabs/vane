@@ -1,4 +1,4 @@
-#Vane
+# Vane
 
 Vane is a GPL fork of the now non-free popular WordPress vulnerability scanner WPScan.
 
@@ -8,7 +8,7 @@ Backstory: https://www.delvelabs.ca/robbed-gunpoint/
 Please note that the WPScan team does not bear any responsibility for anything in this
 program.
 
-##LICENSE
+## LICENSE
 
 Vane - A WordPress vulnerability scanner
 
@@ -29,37 +29,37 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-##INSTALL
+## INSTALL
 
-###Prerequisites
+### Prerequisites
 
    * Windows not supported
    * Ruby => 1.9
    * RubyGems
    * Git
 
-##Run with docker
+## Run with docker
 
 Useful if you do not want to pollute your local environment with ruby gems.
 
     docker build -t vane .
     docker run --rm vane --help
 
-##Installing on Debian/Ubuntu
+## Installing on Debian/Ubuntu
 
     sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev ruby-dev
     git clone https://github.com/delvelabs/vane.git
     cd vane
     sudo gem install bundler && bundle install --without test development
 
-##Installing on Fedora
+## Installing on Fedora
 
     sudo yum install libcurl-devel
     git clone https://github.com/delvelabs/vane.git
     cd vane
     sudo gem install bundler && bundle install --without test development
 
-##Installing on Archlinux
+## Installing on Archlinux
 
     pacman -Sy ruby
     pacman -Sy libyaml
@@ -71,19 +71,19 @@ Useful if you do not want to pollute your local environment with ruby gems.
     gem install typhoeus
     gem install nokogiri
 
-##Installing on Mac OS X
+## Installing on Mac OS X
 
     git clone https://github.com/delvelabs/vane.git
     cd vane
     sudo gem install bundler && bundle install --without test development
 
-##KNOWN ISSUES
+## KNOWN ISSUES
 
-###Typhoeus segmentation fault
+### Typhoeus segmentation fault
 Update cURL to version => 7.21 (may have to install from source)
 See http://code.google.com/p/vane/issues/detail?id=81
 
-###Proxy not working
+### Proxy not working
 Update cURL to version => 7.21.7 (may have to install from source).
 
 Installation from sources :
@@ -95,7 +95,7 @@ Installation from sources :
   - Run `sudo make install`
   - Run `sudo ldconfig`
 
-###cannot load such file -- readline
+### cannot load such file -- readline
 Run `sudo aptitude install libreadline5-dev libncurses5-dev`
 
 Then, open the directory of the readline gem (you have to locate it)
@@ -109,7 +109,7 @@ See http://vvv.tobiassjosten.net/ruby-on-rails/fixing-readline-for-the-ruby-on-r
 
 
 
-##VANE ARGUMENTS
+## VANE ARGUMENTS
 
 --update   Update to the latest revision
 
@@ -159,7 +159,7 @@ See http://vvv.tobiassjosten.net/ruby-on-rails/fixing-readline-for-the-ruby-on-r
 
 --verbose  | -v Verbose output.
 
-##VANE EXAMPLES
+## VANE EXAMPLES
 
 Do 'non-intrusive' checks...
 
@@ -177,7 +177,7 @@ Enumerate installed plugins...
 
     ruby vane.rb --url www.example.com --enumerate p
 
-##VANETOOLS ARGUMENTS
+## VANETOOLS ARGUMENTS
 
     --help    | -h   This help screen.
     --Verbose | -v   Verbose output.
@@ -186,7 +186,7 @@ Enumerate installed plugins...
     --gpl  Alias for --generate_plugin_list
     --check-local-vulnerable-files | --clvf <local directory>  Perform a recursive scan in the <local directory> to find vulnerable files or shells
 
-##VANETOOLS EXAMPLES
+## VANETOOLS EXAMPLES
 
 Generate a new 'most popular' plugin list, up to 150 pages ...
 
