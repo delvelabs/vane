@@ -2,9 +2,6 @@
 
 Vane is a GPL fork of the now non-free popular WordPress vulnerability scanner WPScan.
 
-Backstory: https://www.delvelabs.ca/robbed-gunpoint/
-
-
 Please note that the WPScan team does not bear any responsibility for anything in this
 program.
 
