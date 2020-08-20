@@ -13,7 +13,7 @@ class WpTarget < WebSite
 
     # @return [ String ]
     def full_path_disclosure_url
-      @uri.merge('wp-includes/rss-functions.php').to_s
+      wp_uri.merge('wp-includes/rss-functions.php').to_s
     end
 
   end

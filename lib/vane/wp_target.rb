@@ -69,7 +69,7 @@ class WpTarget < WebSite
   end
 
   def login_url
-    url = @uri.merge('wp-login.php').to_s
+    url = wp_uri.merge('wp-login').to_s
 
     # Let's check if the login url is redirected (to https url for example)
     redirection = redirection(url)

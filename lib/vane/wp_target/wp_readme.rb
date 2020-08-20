@@ -20,7 +20,7 @@ class WpTarget < WebSite
 
     # @return [ String ] The readme URL
     def readme_url
-      @uri.merge('readme.html').to_s
+      wp_uri.merge('readme.html').to_s
     end
 
   end
